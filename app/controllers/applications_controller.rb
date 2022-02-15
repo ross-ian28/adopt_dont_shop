@@ -12,17 +12,19 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    application = Application.new({
-      name: params[:name],
-      street_address: params[:street_address],
-      city: params[:city],
-      state: params[:state],
-      zipcode: params[:zipcode],
-      description: params[:description]
-      })
-
-      application.save
-
-      redirect_to "/applications/#{application.id}"
+    application = Application.new(application_params)
+      if application.save
+        redirect_to "/applications/#{application.id}"
+      else
+        flash[:alert] = "All fields must be filled to submit"
+        redirect_to "/applications/new"
+      end
   end
+
+  private
+    def application_params
+      params.permit(
+        :name, :street_address, :city, :state, :zipcode, :description, :status
+      )
+    end
 end

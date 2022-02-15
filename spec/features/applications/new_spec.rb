@@ -27,9 +27,27 @@ RSpec.describe 'applications creation' do
         fill_in 'City', with: 'Erie'
         fill_in 'State', with: 'Co'
         fill_in 'Zipcode', with: '80516'
+        fill_in 'Description', with: 'I love animals'
         click_button 'Submit'
         expect(page).to have_current_path("/applications/#{@application.id}")
         expect(page).to have_content('Pabu')
+      end
+    end
+  end
+
+  describe 'applictions not filled' do
+    context 'given unvalid data' do
+      it 'creates the pet and redirects to the shelter pets index' do
+        visit "/applications/new"
+
+        fill_in 'Name', with: 'Pabu'
+        fill_in 'City', with: 'Erie'
+        fill_in 'State', with: 'Co'
+        fill_in 'Zipcode', with: '80516'
+        fill_in 'Description', with: 'I love animals'
+        click_button 'Submit'
+        expect(page).to have_current_path("/applications/new")
+        expect(page).to have_content('All fields must be filled to submit')
       end
     end
   end
