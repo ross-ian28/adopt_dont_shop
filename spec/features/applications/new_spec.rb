@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'applications creation' do
   before(:each) do
-    @application = Application.create!()
+    @application = Application.new
   end
 
   describe 'applications new' do
