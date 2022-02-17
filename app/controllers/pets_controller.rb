@@ -12,7 +12,7 @@ class PetsController < ApplicationController
   end
 
   def new
-    @shelter = Shelter.find(params[:shelter_id])
+    @pet = Shelter.find(params[:shelter_id])
   end
 
   def create

@@ -5,7 +5,7 @@ class Application < ApplicationRecord
   validates :state, presence: true
   validates :zipcode, presence: true
 
-  attribute :description, :string
+  #attribute :description, :string
   attribute :status, :integer, default: "In Progress"
 
   has_many :pet_application
